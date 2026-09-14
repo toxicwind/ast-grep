@@ -9,15 +9,15 @@ on:
     tags:
       - "[0-9]+.*"
   schedule:
-    # run napi every day 9 am
-    - cron: '0 9 * * *'
+    # run napi every Monday 9 am UTC
+    - cron: '0 9 * * 1'
 
 defaults:
   run:
     working-directory: ./crates/napi
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: ${{ github.event.head_commit == null || !contains(github.event.head_commit.message, 'skip ci') }}
     strategy:
       fail-fast: false
       matrix:

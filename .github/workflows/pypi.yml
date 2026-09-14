@@ -10,8 +10,8 @@ on:
     tags:
       - "[0-9]+.*"
   schedule:
-    # run pypi every day 9 am
-    - cron: '0 9 * * *'
+    # run pypi every Monday 9 am UTC
+    - cron: '0 9 * * 1'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
